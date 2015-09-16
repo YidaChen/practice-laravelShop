@@ -39,7 +39,7 @@ return [
 	|
 	 */
 
-	'timezone' => 'UTC',
+	'timezone' => 'Asia/Taipei',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
 	|
 	 */
 
-	'locale' => 'en',
+	'locale' => 'zh-TW',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -146,6 +146,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
 		Barryvdh\Debugbar\ServiceProvider::class,
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 	],
 
