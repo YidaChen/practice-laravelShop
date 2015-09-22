@@ -1,5 +1,11 @@
 <?php
 
 Route::get('/', function () {
-	return view('template');
+	return view('front.shopIndex');
+});
+Route::get('/item', function () {
+	return view('front.shopItem');
+});
+Route::get('/login', function () {
+	return view('auth.login');
 });
