@@ -9,3 +9,6 @@ Route::get('/item', function () {
 Route::get('/login', function () {
 	return view('auth.login');
 });
+Route::get('/back', function () {
+	return view('back/backIndex');
+});
