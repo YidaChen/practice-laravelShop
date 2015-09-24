@@ -3,7 +3,7 @@
 @section('title','Yida商城-XX商品')
 
 @section('link')
-<link href="css/front/shop-item.css" rel="stylesheet">
+<link href="/css/front/shop-item.css" rel="stylesheet">
 @endsection
 
 @section('body')
