@@ -37,6 +37,7 @@
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
+                        @include('errors.formError')
                     </div>
                 </div>
             </div>

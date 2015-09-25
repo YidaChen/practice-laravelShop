@@ -137,7 +137,7 @@
                                     <a href="/back/admin">管理員列表</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">新增管理員</a>
+                                    <a href="/back/admin/create">新增管理員</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

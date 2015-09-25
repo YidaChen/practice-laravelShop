@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder {
 
 		Role::create([
 			'title' => '編輯',
-			'slug' => 'Redactor',
+			'slug' => 'redactor',
 		]);
 
 		Role::create([

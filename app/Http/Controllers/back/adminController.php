@@ -1,18 +1,23 @@
 <?php
-
 namespace App\Http\Controllers\back;
-
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class adminController extends Controller {
+	public function __construct() {
+		$this->middleware('IsAdmin', ['except' => ['index']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view('back.admin.adminList');
+		$users = User::all();
+		return view('back.admin.adminList', compact('users'));
 	}
 
 	/**
@@ -21,7 +26,8 @@ class adminController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		$roles = Role::all();
+		return view('back.admin.adminAdd', compact('roles'));
 	}
 
 	/**
@@ -30,20 +36,12 @@ class adminController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request) {
-		//
+	public function store(AdminRequest $request) {
+		$user = $request->all();
+		$user['password'] = bcrypt($user['password']);
+		User::create($user);
+		return redirect('back/admin');
 	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id) {
-		//
-	}
-
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -51,7 +49,8 @@ class adminController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		//
+		$user = User::find($id);
+		return view('back.admin.adminEdit', compact('user'));
 	}
 
 	/**
