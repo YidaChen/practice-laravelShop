@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AdminRequest extends Request {
+class AdminEditRequest extends Request {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -22,7 +22,7 @@ class AdminRequest extends Request {
 	public function rules() {
 		return [
 			'name' => 'required|max:30',
-			'email' => 'required|email|unique:users',
+			'email' => 'required|email',
 			'password' => 'required|min:4|confirmed',
 			'password_confirmation' => 'required|min:4',
 			'role_id' => 'required',

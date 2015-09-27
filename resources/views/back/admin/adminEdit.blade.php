@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title','添加管理員')
+@section('title','編輯管理員')
 
 @section('link')
 <link href="/css/back/metisMenu.css" rel="stylesheet">
@@ -30,16 +30,17 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form action="{{ URL('back/admin') }}" method="POST" role="form">
-                                    <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+                                    <form action="{{ URL('back/admin/'.$user->id) }}" method="POST" role="form">
+                                    <input name="_method" type="hidden" value="PUT">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="form-group">
                                             <label>姓名</label>
-                                            <input type="text" name="name" value="{{ old('name') }}" required class="form-control">
+                                            <input type="text" name="name" value="{{ $user->name }}" required class="form-control">
 
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" name="email" value="{{ old('email') }}" required class="form-control">
+                                            <input type="email" name="email" value="{{ $user->email }}" required class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>密碼</label>
@@ -57,7 +58,7 @@
                                             @endforeach
                                             </select>
                                         </div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">確認創建</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">確認編輯</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

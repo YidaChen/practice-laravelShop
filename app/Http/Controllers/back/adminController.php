@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\AdminAddRequest;
+use App\Http\Requests\AdminEditRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class adminController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(AdminRequest $request) {
+	public function store(AdminAddRequest $request) {
 		$user = $request->all();
 		$user['password'] = bcrypt($user['password']);
 		User::create($user);
@@ -50,7 +51,8 @@ class adminController extends Controller {
 	 */
 	public function edit($id) {
 		$user = User::find($id);
-		return view('back.admin.adminEdit', compact('user'));
+		$roles = Role::all();
+		return view('back.admin.adminEdit', compact('user', 'roles'));
 	}
 
 	/**
@@ -60,8 +62,12 @@ class adminController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id) {
-		//
+	public function update(AdminEditRequest $request, $id) {
+		$request = $request->all();
+		$request['password'] = bcrypt($request['password']);
+		$user = User::find($id);
+		$user->update($request);
+		return redirect('back/admin');
 	}
 
 	/**
@@ -71,6 +77,9 @@ class adminController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		//
+		$user = User::find($id);
+		$user->delete();
+
+		return redirect('back/admin');
 	}
 }
