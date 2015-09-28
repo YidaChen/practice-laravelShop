@@ -4,6 +4,10 @@ Route::group(['middleware' => ['auth', 'NotUser'], 'prefix' => 'back', 'namespac
 	Route::get('/', 'backController@index');
 	Route::resource('admin', 'adminController');
 });
+Route::group(['middleware' => ['auth', 'NotUser']], function () {
+	Route::controller('filemanager', 'FilemanagerLaravelController');
+});
+
 Route::get('/', function () {
 	return view('front.shopIndex');
 });
