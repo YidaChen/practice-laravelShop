@@ -119,13 +119,23 @@
                                     <a href="morris.html">新增商品</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 標籤管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/back/category">查看所有標籤</a>
+                                </li>
+                                <li>
+                                    <a href="/back/category/create">新增標籤</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 評論管理</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 檔案管理</a>
+                            <a href="/filemanager/show" target="_blank"><i class="fa fa-dashboard fa-fw"></i> 檔案管理</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 用戶管理<span class="fa arrow"></span></a>

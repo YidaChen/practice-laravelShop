@@ -3,6 +3,8 @@
 Route::group(['middleware' => ['auth', 'NotUser'], 'prefix' => 'back', 'namespace' => 'back'], function () {
 	Route::get('/', 'backController@index');
 	Route::resource('admin', 'adminController');
+	Route::resource('category', 'categoryController');
+	Route::resource('item', 'itemController');
 });
 Route::group(['middleware' => ['auth', 'NotUser']], function () {
 	Route::controller('filemanager', 'FilemanagerLaravelController');
