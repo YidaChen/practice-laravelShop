@@ -1,6 +1,6 @@
 var editor_config = {
     path_absolute : '',
-	language : 'es',
+	language : 'zh_TW',
     // selector: "textarea",
     theme: "modern",
     plugins: [
@@ -20,7 +20,7 @@ var editor_config = {
         {title: 'Test template 1', content: 'Test 1'},
         {title: 'Test template 2', content: 'Test 2'}
     ],
-    file_browser_callback : function(field_name, url, type, win) { 
+    file_browser_callback : function(field_name, url, type, win) {
                 // from http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
                 var w = window,
                 d = document,
@@ -33,7 +33,7 @@ var editor_config = {
             // var cmsURL = 'http://localhost/otherfolder/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
             var cmsURL = editor_config.path_absolute+'filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
 
-            if(type == 'image') {           
+            if(type == 'image') {
                 cmsURL = cmsURL + "&type=images";
             }
 
@@ -44,7 +44,7 @@ var editor_config = {
                 height : y * 0.8,
                 resizable : "yes",
                 close_previous : "no"
-            });         
+            });
 
         }
 };

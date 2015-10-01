@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title','添加商品')
+@section('title','編輯商品')
 
 @section('link')
 <link href="/css/back/metisMenu.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 @include('errors.formError')
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">新增商品</h1>
+                    <h1 class="page-header">編輯商品</h1>
                 </div>
             </div>
             <div class="row">
@@ -29,37 +29,31 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="{{ URL('/back/item') }}" method="POST" role="form">
-                                    <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+                                    {!! Form::model($item,['url'=>'back/item/'.$item->id,'method' => 'put']) !!}
                                         <div class="form-group">
                                             <label>名稱</label>
-                                            <input type="text" name="title" value="{{ old('title') }}" required class="form-control">
-
+                                            {!! Form::text('title',null,['class'=>'form-control','required'=>'required']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label>簡介</label>
-                                            <textarea name="summary" rows="5" class="form-control">{{ old('summary') }}</textarea>
+                                            {!! Form::textarea('summary',null,['class'=>'form-control','rows'=>'5']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label>內容</label>
-                                            <textarea name="content" rows="20" class="form-control">{{ old('content') }}</textarea>
+                                            {!! Form::textarea('content',null,['class'=>'form-control','rows'=>'20']) !!}
                                         </div>
 
                                         <div class="form-group">
                                             <label>類別</label>
-                                            <select class="form-control category" name="category_list[]" required multiple="multiple">
-                                            @foreach($categories as $id=>$category)
-                                                <option value="{{ $id }}">{{ $category }}</option>
-                                            @endforeach
-                                            </select>
+                                            {!! Form::select('category_list[]',$categories,null,['class'=>'form-control category','multiple'=>'multiple','required'=>'required']) !!}
+
                                         </div>
                                         <div class="form-group">
                                             <label>價錢</label>
-                                            <input type="number" name="price" value="{{ old('price') }}" required class="form-control">
-
+                                            {!! Form::number('price',null,['class'=>'form-control','required'=>'required']) !!}
                                         </div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">確認創建</button>
-                                    </form>
+                                    {!! Form::submit('確認修改',['class'=>'btn btn-primary btn-lg btn-block']) !!}
+                                    {!! Form::close() !!}
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

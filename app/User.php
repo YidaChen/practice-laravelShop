@@ -39,4 +39,7 @@ CanResetPasswordContract {
 	public function role() {
 		return $this->belongsTo('App\Role');
 	}
+	public function items() {
+		return $this->hasMany('App\Item');
+	}
 }

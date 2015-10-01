@@ -113,10 +113,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 商品管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">查看所有商品</a>
+                                    <a href="/back/item">查看所有商品</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">新增商品</a>
+                                    <a href="/back/item/create">新增商品</a>
                                 </li>
                             </ul>
                         </li>
