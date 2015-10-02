@@ -43,7 +43,7 @@
                                             <td>{{ $item->price }}</td>
                                             <td><a href="/back/item/{{$item->id}}/edit" type="button" class="btn btn-info">修改資料</a> <form action="{{ URL('back/item/'.$item->id) }}" method="POST" style="display: inline;">
               <input name="_method" type="hidden" value="DELETE">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-danger">刪除帳號</button></form></td>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-danger">刪除商品</button></form></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

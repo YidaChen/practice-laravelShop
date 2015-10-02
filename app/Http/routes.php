@@ -9,10 +9,11 @@ Route::group(['middleware' => ['auth', 'NotUser'], 'prefix' => 'back', 'namespac
 Route::group(['middleware' => ['auth', 'NotUser']], function () {
 	Route::controller('filemanager', 'FilemanagerLaravelController');
 });
-
-Route::get('/', function () {
-	return view('front.shopIndex');
+Route::group(['namespace' => 'front'], function () {
+	Route::get('/', 'ShopController@index');
+	Route::get('/{id}', 'ShopController@show');
 });
+
 // 認證路由...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
