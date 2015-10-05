@@ -12,7 +12,7 @@ class Item extends Model {
 		'price',
 	];
 	public function categories() {
-		return $this->belongsToMany('App\Category');
+		return $this->belongsToMany('App\Category')->withTimestamps();
 	}
 	public function user() {
 		return $this->belongsTo('App\User');

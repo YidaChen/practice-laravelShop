@@ -29,6 +29,7 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th>商品ID</th>
                                             <th>商品名稱</th>
                                             <th>發佈作者</th>
                                             <th>價錢</th>
@@ -38,6 +39,7 @@
                                     <tbody>
                                     @foreach($items as $item)
                                         <tr>
+                                            <td>{{ $item->id }}</td>
                                             <td><a href="">{{ $item->title }}</a></td>
                                             <td>{{ $item->user->name }}</td>
                                             <td>{{ $item->price }}</td>

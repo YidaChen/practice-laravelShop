@@ -29,7 +29,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    {!! Form::model($item,['url'=>'back/item/'.$item->id,'method' => 'put']) !!}
+                                    {!! Form::model($item,['url'=>'back/item/'.$item->id,'files' => true,'method' => 'put']) !!}
                                         <div class="form-group">
                                             <label>名稱</label>
                                             {!! Form::text('title',null,['class'=>'form-control','required'=>'required']) !!}
@@ -46,7 +46,10 @@
                                         <div class="form-group">
                                             <label>類別</label>
                                             {!! Form::select('category_list[]',$categories,null,['class'=>'form-control category','multiple'=>'multiple','required'=>'required']) !!}
-
+                                        <div class="form-group">
+                                            <label>商品圖片</label>
+                                            {!! Form::file('image', null, ['class'=>'form-control','required'=>'required']) !!}
+                                        </div>
                                         </div>
                                         <div class="form-group">
                                             <label>價錢</label>

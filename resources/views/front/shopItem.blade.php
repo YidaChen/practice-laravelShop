@@ -17,16 +17,16 @@
             <div class="col-md-3">
                 <p class="lead">Shop Name</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                @foreach($categories as $category)
+                    <a href="/{{ $category->category }}" class="list-group-item">{{ $category->category }}</a>
+                @endforeach
                 </div>
             </div>
 
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <img class="img-responsive" src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" style="width:800px;height:300px" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right">$ {{ $item->price }}</h4>
                         <h4><a href="#">{{ $item->title }}</a>

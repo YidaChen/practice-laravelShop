@@ -12,8 +12,13 @@ class ShopController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index() {
-		$items = Item::latest('created_at')->get();
+	public function index($category = null) {
+		if (isset($category)) {
+			$category = Category::where('category', $category)->firstOrFail();
+			$items = $category->items()->latest('created_at')->get();
+		} else {
+			$items = Item::latest('created_at')->get();
+		}
 		$categories = Category::get();
 		return view('front.shopIndex', compact('items', 'categories'));
 	}

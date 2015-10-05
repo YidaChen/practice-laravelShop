@@ -10,8 +10,8 @@ Route::group(['middleware' => ['auth', 'NotUser']], function () {
 	Route::controller('filemanager', 'FilemanagerLaravelController');
 });
 Route::group(['namespace' => 'front'], function () {
-	Route::get('/', 'ShopController@index');
-	Route::get('/{id}', 'ShopController@show');
+	Route::get('/item={id}', 'ShopController@show');
+	Route::get('/{category?}', 'ShopController@index');
 });
 
 // 認證路由...

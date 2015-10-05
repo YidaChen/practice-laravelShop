@@ -25,6 +25,7 @@ class ItemRequest extends Request {
 			'summary' => 'required',
 			'content' => 'required',
 			'price' => 'required',
+			'image' => 'mimes:png,jpeg,bmp,gif,jpg',
 		];
 	}
 }

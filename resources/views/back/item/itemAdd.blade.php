@@ -29,8 +29,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="{{ URL('/back/item') }}" method="POST" role="form">
-                                    <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+                                    {!! Form::open(['url'=>'/back/item','method' => 'POST', 'files' => true]) !!}
                                         <div class="form-group">
                                             <label>名稱</label>
                                             <input type="text" name="title" value="{{ old('title') }}" required class="form-control">
@@ -54,12 +53,16 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label>商品圖片</label>
+                                            {!! Form::file('image', null, ['class'=>'form-control','required'=>'required']) !!}
+                                        </div>
+                                        <div class="form-group">
                                             <label>價錢</label>
                                             <input type="number" name="price" value="{{ old('price') }}" required class="form-control">
 
                                         </div>
                                     <button type="submit" class="btn btn-primary btn-lg btn-block">確認創建</button>
-                                    </form>
+                                    {!! Form::close() !!}
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

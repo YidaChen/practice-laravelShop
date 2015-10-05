@@ -17,9 +17,9 @@
             <div class="col-md-3">
                 <p class="lead">Shop Name</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                @foreach($categories as $category)
+                    <a href="/{{ $category->category }}" class="list-group-item">{{ $category->category }}</a>
+                @endforeach
                 </div>
             </div>
 
@@ -60,10 +60,10 @@
                     @foreach($items as $item)
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" style="width:320px;height:150px" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$ {{ $item->price }}</h4>
-                                <h4><a href="/{{ $item->id }}">{{ $item->title }}</a>
+                                <h4><a href="/item={{ $item->id }}">{{ $item->title }}</a>
                                 </h4>
                                 <p>{!! $item->summary !!}</p>
                             </div>

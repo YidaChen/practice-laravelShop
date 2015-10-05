@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ItemRequest;
 use App\Item;
 use Auth;
+use File;
 use Illuminate\Http\Request;
+use Image;
 
 class itemController extends Controller {
 	/**
@@ -17,7 +19,8 @@ class itemController extends Controller {
 	 */
 	public function index() {
 		$items = Item::all();
-		return view('back.item.itemList', compact('items'));
+		$categories = Category::all();
+		return view('back.item.itemList', compact('items', 'categories'));
 	}
 
 	/**
@@ -39,6 +42,11 @@ class itemController extends Controller {
 	public function store(ItemRequest $request) {
 		$item = Auth::user()->items()->create($request->all());
 		$item->categories()->attach($request->input('category_list'));
+
+		if ($request->file('image')) {
+			$imageName = $item->id;
+			Image::make($request->file('image'))->fit('800', '300')->encode('jpg', 80)->save(base_path() . '/public/filemanager/userfiles/itemImage/' . $imageName . '.jpg');
+		}
 		return redirect('/back/item');
 	}
 
@@ -75,6 +83,11 @@ class itemController extends Controller {
 		$item = Item::find($id);
 		$item->update($request->all());
 		$item->categories()->sync($request->input('category_list'));
+
+		if ($request->file('image')) {
+			$imageName = $item->id;
+			Image::make($request->file('image'))->fit('800', '300')->encode('jpg', 80)->save(base_path() . '/public/filemanager/userfiles/itemImage/' . $imageName . '.jpg');
+		}
 		return redirect('/back/item');
 	}
 
@@ -87,6 +100,10 @@ class itemController extends Controller {
 	public function destroy($id) {
 		$item = Item::find($id);
 		$item->delete();
+		$imagePath = base_path() . '/public/filemanager/userfiles/itemImage/' . $id . '.jpg';
+		if (File::exists($imagePath)) {
+			File::delete($imagePath);
+		}
 		return redirect('/back/item');
 	}
 }
