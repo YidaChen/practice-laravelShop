@@ -55,6 +55,10 @@
                                             <label>價錢</label>
                                             {!! Form::number('price',null,['class'=>'form-control','required'=>'required']) !!}
                                         </div>
+                                        <div class="form-group">
+                                            <label>是否發布</label>
+                                            {!! Form::checkbox('published','1',$item->published,['class'=>'form-control']) !!}
+                                        </div>
                                     {!! Form::submit('確認修改',['class'=>'btn btn-primary btn-lg btn-block']) !!}
                                     {!! Form::close() !!}
                                 </div>

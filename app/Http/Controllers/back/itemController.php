@@ -82,6 +82,9 @@ class itemController extends Controller {
 	public function update(ItemRequest $request, $id) {
 		$item = Item::find($id);
 		$item->update($request->all());
+		if (empty($request->input('published'))) {
+			$item->update(['published' => 0]);
+		}
 		$item->categories()->sync($request->input('category_list'));
 
 		if ($request->file('image')) {
@@ -105,5 +108,10 @@ class itemController extends Controller {
 			File::delete($imagePath);
 		}
 		return redirect('/back/item');
+	}
+	public function updatePublished(Request $request, $id) {
+		$item = Item::find($id);
+		$item->published = $request->input('published') == 'true' ? 1 : 0;
+		$item->save();
 	}
 }

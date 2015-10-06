@@ -15,9 +15,9 @@ class ShopController extends Controller {
 	public function index($category = null) {
 		if (isset($category)) {
 			$category = Category::where('category', $category)->firstOrFail();
-			$items = $category->items()->latest('created_at')->get();
+			$items = $category->items()->where('published', 1)->latest('created_at')->get();
 		} else {
-			$items = Item::latest('created_at')->get();
+			$items = Item::where('published', 1)->latest('created_at')->get();
 		}
 		$categories = Category::get();
 		return view('front.shopIndex', compact('items', 'categories'));
@@ -30,8 +30,10 @@ class ShopController extends Controller {
 	 */
 	public function show($id) {
 		$item = Item::find($id);
-		$categories = Category::get();
-		return view('front.shopItem', compact('item', 'categories'));
+		if ($item->published) {
+			$categories = Category::get();
+			return view('front.shopItem', compact('item', 'categories'));
+		}
 	}
 
 	/**

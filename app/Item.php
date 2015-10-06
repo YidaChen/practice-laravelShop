@@ -10,6 +10,7 @@ class Item extends Model {
 		'summary',
 		'content',
 		'price',
+		'published',
 	];
 	public function categories() {
 		return $this->belongsToMany('App\Category')->withTimestamps();

@@ -5,6 +5,7 @@ Route::group(['middleware' => ['auth', 'NotUser'], 'prefix' => 'back', 'namespac
 	Route::resource('admin', 'adminController');
 	Route::resource('category', 'categoryController');
 	Route::resource('item', 'itemController');
+	Route::put('item/updatePublished/{id}', 'itemController@updatePublished');
 });
 Route::group(['middleware' => ['auth', 'NotUser']], function () {
 	Route::controller('filemanager', 'FilemanagerLaravelController');
