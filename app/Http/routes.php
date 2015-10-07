@@ -13,9 +13,14 @@ Route::group(['middleware' => ['auth', 'NotUser']], function () {
 Route::group(['namespace' => 'front'], function () {
 	Route::get('/item={id}', 'ShopController@show');
 	Route::get('/{category?}', 'ShopController@index');
+	Route::post('storeReview', 'reviewController@store');
 });
 
 // 認證路由...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// 註冊路由...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');

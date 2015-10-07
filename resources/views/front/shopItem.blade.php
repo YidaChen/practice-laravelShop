@@ -1,5 +1,8 @@
 @extends('template')
 
+@section('meta')
+<meta name="csrf-token" content="<?php echo csrf_token()?>">
+@endsection
 @section('title','Yida商城-XX商品')
 
 @section('link')
@@ -47,56 +50,35 @@
                 </div>
 
                 <div class="well">
-
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
+                    @if(Auth::guest())
+                    <div class="alert alert-warning">
+                    <a href="{{ url('/auth/login') }}"><strong>評論請先登入</strong></a>
                     </div>
-
+                    @else
+                    <div>
+                    <label>{{ Auth::user()->name }} :</label>
+                    <input name="content" type="text" class="form-control">
+                        <button class="review btn btn-success btn-block">留下評論</button>
+                    </div>
+                    @endif
+                    <div>
+                    @foreach($item->reviews as $review)
                     <hr>
-
                     <div class="row">
                         <div class="col-md-12">
+                        {{ $review->user->name }}&nbsp;&nbsp;
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                            <span class="pull-right">
+                            {{ $review->created_at->format('Y-m-d H:i') }}</span>
+                            <p>{{ $review->content }}</p>
                         </div>
                     </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
+                    @endforeach
                     </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -107,4 +89,37 @@
     <!-- /.container -->
 @include('front.partial.footer')
 
+@endsection
+
+@section('script')
+<script>
+$(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $("button.review").click(function(){
+        var input = $('input[name=content]').val();
+        if(input){
+        $.ajax({
+            url: '/storeReview',
+            type: 'POST',
+            data: "content=" + input + "&user_id={{ Auth::user()->id }}"
+                    +  "&item_id={{ $item->id }}"
+        })
+        .done(function() {
+            $('input[name=content]').val('');
+
+        })
+        .fail(function() {
+            alert('發布評論失敗');
+        });
+        } else {
+            alert("請輸入內容");
+        }
+    });
+
+});
+</script>
 @endsection

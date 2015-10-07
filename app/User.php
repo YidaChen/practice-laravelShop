@@ -42,4 +42,7 @@ CanResetPasswordContract {
 	public function items() {
 		return $this->hasMany('App\Item');
 	}
+	public function reviews() {
+		return $this->hasMany('App\Review');
+	}
 }

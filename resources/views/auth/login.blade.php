@@ -33,6 +33,7 @@
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
+                                <a href="{{ url('/auth/register') }}" class="pull-right">尚未註冊?</a>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>

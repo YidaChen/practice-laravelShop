@@ -12,6 +12,9 @@ class Item extends Model {
 		'price',
 		'published',
 	];
+	public function reviews() {
+		return $this->hasMany('App\Review');
+	}
 	public function categories() {
 		return $this->belongsToMany('App\Category')->withTimestamps();
 	}
