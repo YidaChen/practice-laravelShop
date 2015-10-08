@@ -20,7 +20,6 @@ class adminController extends Controller {
 		$users = User::all();
 		return view('back.admin.adminList', compact('users'));
 	}
-
 	/**
 	 * Show the form for creating a new resource.
 	 *

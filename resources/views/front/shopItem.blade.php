@@ -3,7 +3,9 @@
 @section('meta')
 <meta name="csrf-token" content="<?php echo csrf_token()?>">
 @endsection
-@section('title','Yida商城-XX商品')
+@section('title')
+Yida商城-{{ $item->title }}
+@endsection
 
 @section('link')
 <link href="/css/front/shop-item.css" rel="stylesheet">

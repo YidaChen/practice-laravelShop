@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Review;
 use Illuminate\Http\Request;
 
-class backController extends Controller {
+class reviewController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$newReviewsNum = Review::where('seen', 0)->count();
-		return view('back.backIndex', compact('newReviewsNum'));
+		$reviews = Review::all();
+		return view('back.review.reviewList', compact('reviews'));
 	}
 
 	/**
@@ -74,6 +74,13 @@ class backController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		//
+		$review = Review::find($id);
+		$review->delete();
+		return redirect('/back/review');
+	}
+	public function updateSeen(Request $request, $id) {
+		$review = Review::find($id);
+		$review->seen = $request->input('seen') == 'true' ? 1 : 0;
+		$review->save();
 	}
 }

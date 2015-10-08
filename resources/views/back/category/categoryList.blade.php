@@ -37,7 +37,7 @@
                                     @foreach($categories as $category)
                                         <tr>
                                             <td>{{ $category->category }}</td>
-                                            <td><a href="/back/category/{{$category->id}}/edit" type="button" class="btn btn-info">修改名稱</a> <form action="{{ URL('back/category/'.$category->id) }}" method="POST" style="display: inline;">
+                                            <td><a href="/back/category/{{$category->id}}/edit" type="button" class="btn btn-info">修改名稱</a> <form action="{{ URL('back/category/'.$category->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除商品嗎? 操作無法復原!');">
               <input name="_method" type="hidden" value="DELETE">
               <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-danger">刪除標籤</button></form></td>
                                         </tr>

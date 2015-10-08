@@ -18,7 +18,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">商品列表</h1>
+                    <h1 class="page-header">評論列表</h1>
                 </div>
             </div>
  <div class="row">
@@ -33,25 +33,27 @@
                                 <table id="datatable" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>商品ID</th>
+
                                             <th>商品名稱</th>
-                                            <th>發佈作者</th>
-                                            <th>價錢</th>
-                                            <th>發布</th>
+                                            <th>評論內容</th>
+                                            <th>評論人</th>
+                                            <th>時間</th>
+                                            <th>看過</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($items as $item)
+                                    @foreach($reviews as $review)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td><a href="/item={{ $item->id }}" target="_blank">{{ $item->title }}</a></td>
-                                            <td>@if(isset($item->user->name)){{ $item->user->name }}@else用戶已刪除@endif</td>
-                                            <td>{{ $item->price }}</td>
-                                            <td>{!! Form::checkbox('published',$item->id,$item->published) !!}</td>
-                                            <td><a href="/back/item/{{$item->id}}/edit" type="button" class="btn btn-sm btn-info">修改資料</a> <form action="{{ URL('back/item/'.$item->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除商品嗎? 操作無法復原!');">
+
+                                            <td><a href="/item={{ $review->item->id }}" target="_blank">{{ $review->item->title }}</a></td>
+                                            <td>{{ $review->content }}</td>
+                                            <td>@if(isset($review->user->name)){{ $review->user->name }}@else用戶已刪除@endif</td>
+                                            <td>{{ $review->created_at->format('Y-m-d H:i') }}</td>
+                                            <td>{!! Form::checkbox('seen',$review->id,$review->seen) !!}</td>
+                                            <td> <form action="{{ URL('back/review/'.$review->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除商品嗎? 操作無法復原!');">
               <input name="_method" type="hidden" value="DELETE">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-sm btn-danger">刪除商品</button></form></td>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-sm btn-danger">刪除評論</button></form></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -72,7 +74,6 @@
 @endsection
 
 @section('script')
-<script src="/js/back/bootbox.min.js"></script>
 <script src="/js/back/metisMenu.js"></script>
 <script src="/js/back/sb-admin-2.js"></script>
 <script src="/js/back/jquery.dataTables.min.js"></script>
@@ -86,20 +87,20 @@ $(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#datatable tbody').on('change',':checkbox[name="published"]', function () {
+    $('#datatable tbody').on('change',':checkbox[name="seen"]', function () {
         $(this).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>');
         $.ajax({
-            url: '/back/item/updatePublished/' + this.value,
+            url: '/back/review/updateSeen/' + this.value,
             type: 'PUT',
-            data: "published=" + this.checked// + "&_method=PUT"
+            data: "seen=" + this.checked// + "&_method=PUT"
         })
         .done(function() {
             $('.fa-spin').remove();
-            $('input:checkbox[name="published"]:hidden').show();
+            $('input:checkbox[name="seen"]:hidden').show();
         })
         .fail(function() {
             $('.fa-spin').remove();
-            chk = $('input:checkbox[name="published"]:hidden');
+            chk = $('input:checkbox[name="seen"]:hidden');
             chk.show().prop('checked', chk.is(':checked') ? null:'checked')
         });
     });

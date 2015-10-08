@@ -6,13 +6,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Yida的商城管理後台</a>
+                <a class="navbar-brand" href="/back">Yida的商城管理後台(demo)</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
 
-
+                <li><a href="/">回首頁</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -107,7 +107,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/back"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li class="active">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 商品管理<span class="fa arrow"></span></a>
@@ -132,7 +132,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 評論管理</a>
+                            <a href="/back/review"><i class="fa fa-dashboard fa-fw"></i> 評論管理</a>
                         </li>
                         <li>
                             <a href="/filemanager/show" target="_blank"><i class="fa fa-dashboard fa-fw"></i> 檔案管理</a>
@@ -141,10 +141,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 用戶管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">用戶列表</a>
-                                </li>
-                                <li>
-                                    <a href="/back/admin">管理員列表</a>
+                                    <a href="/back/admin">用戶列表</a>
                                 </li>
                                 <li>
                                     <a href="/back/admin/create">新增管理員</a>

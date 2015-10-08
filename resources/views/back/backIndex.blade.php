@@ -27,12 +27,14 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
+                                    @if($newReviewsNum > 0)
+                                    <div class="huge">{{ $newReviewsNum }}</div>
+                                    <div>商品有新的評論!</div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="/back/review">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

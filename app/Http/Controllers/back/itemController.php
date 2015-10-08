@@ -19,8 +19,7 @@ class itemController extends Controller {
 	 */
 	public function index() {
 		$items = Item::all();
-		$categories = Category::all();
-		return view('back.item.itemList', compact('items', 'categories'));
+		return view('back.item.itemList', compact('items'));
 	}
 
 	/**
@@ -102,6 +101,9 @@ class itemController extends Controller {
 	 */
 	public function destroy($id) {
 		$item = Item::find($id);
+		foreach ($item->reviews as $review) {
+			$review->delete();
+		}
 		$item->delete();
 		$imagePath = base_path() . '/public/filemanager/userfiles/itemImage/' . $id . '.jpg';
 		if (File::exists($imagePath)) {
