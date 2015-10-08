@@ -24,9 +24,8 @@
             </div>
 
             <div class="col-md-9">
-
+                @if(isset($take3Items))
                 <div class="row carousel-holder">
-
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -35,15 +34,11 @@
                                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
+                            @foreach($take3Items as $item)
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <a href="/item={{ $item->id }}"><img class="slide-image" src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" alt=""></a>
                                 </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
+                            @endforeach
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -53,9 +48,8 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-
+                @endif
                 <div class="row">
                     @foreach($items as $item)
                     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -81,13 +75,20 @@
                     </div>
                     @endforeach
                 </div>
-
+            {!! $items->render() !!}
             </div>
-
         </div>
 
     </div>
     <!-- /.container -->
 @include('front.partial.footer')
 
+@endsection
+
+@section('script')
+<script>
+$(function(){
+    $('div.item:first-child').addClass('active');
+});
+</script>
 @endsection

@@ -57,11 +57,11 @@
                     @else
                     <div>
                     <label>{{ Auth::user()->name }} :</label>
-                    <input name="content" type="text" class="form-control">
+                    <input name="content" type="text" class="form-control" placeholder="ajax評論">
                         <button class="review btn btn-success btn-block">留下評論</button>
                     </div>
                     @endif
-                    <div>
+
                     @foreach($item->reviews as $review)
                     <hr>
                     <div class="row">
@@ -78,7 +78,8 @@
                         </div>
                     </div>
                     @endforeach
-                    </div>
+                    <div class="review"></div>
+
                 </div>
 
             </div>
@@ -105,11 +106,14 @@ $(function(){
         $.ajax({
             url: '/storeReview',
             type: 'POST',
-            data: "content=" + input + "&user_id={{ Auth::user()->id }}"
+            data: "content=" + input + "&user_id=@if(Auth::check()){{ Auth::user()->id }}@endif"
                     +  "&item_id={{ $item->id }}"
         })
-        .done(function() {
+        .done(function(data) {
             $('input[name=content]').val('');
+            $('div.review:last-child').after('<hr><div class="row review"><div class="col-md-12">'+data.user+'&nbsp;&nbsp;<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="pull-right">'+data.time+'</span><p>'+data.content+'</p></div></div>');
+
+
 
         })
         .fail(function() {

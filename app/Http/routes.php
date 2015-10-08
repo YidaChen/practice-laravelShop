@@ -12,6 +12,7 @@ Route::group(['middleware' => ['auth', 'NotUser']], function () {
 });
 Route::group(['namespace' => 'front'], function () {
 	Route::get('/item={id}', 'ShopController@show');
+	Route::get('search', 'ShopController@search');
 	Route::get('/{category?}', 'ShopController@index');
 	Route::post('storeReview', 'reviewController@store');
 });
