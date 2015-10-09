@@ -72,7 +72,6 @@
 @endsection
 
 @section('script')
-<script src="/js/back/bootbox.min.js"></script>
 <script src="/js/back/metisMenu.js"></script>
 <script src="/js/back/sb-admin-2.js"></script>
 <script src="/js/back/jquery.dataTables.min.js"></script>
