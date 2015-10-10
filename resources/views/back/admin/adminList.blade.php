@@ -42,7 +42,7 @@
                                             <td>{{ $user->role->title }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td><a href="/back/admin/{{$user->id}}/edit" type="button" class="btn btn-info">修改資料</a> <form action="{{ URL('back/admin/'.$user->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除商品嗎? 操作無法復原!');">
+                                            <td><a href="/back/admin/{{$user->id}}/edit" type="button" class="btn btn-info">修改資料</a> <form action="{{ URL('back/admin/'.$user->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除用戶嗎? 操作無法復原!');">
               <input name="_method" type="hidden" value="DELETE">
               <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-danger">刪除帳號</button></form></td>
                                         </tr>

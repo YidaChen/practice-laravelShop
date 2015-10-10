@@ -36,7 +36,7 @@ Yida商城-{{ $item->title }}
                         <h4 class="pull-right">$ {{ $item->price }}</h4>
                         <h4><a href="#">{{ $item->title }}</a>
                         </h4>
-                        {!! $item->summary !!}
+                        {!! $item->content !!}
                     </div>
                     <div class="ratings">
                         <p class="pull-right">3 reviews</p>
