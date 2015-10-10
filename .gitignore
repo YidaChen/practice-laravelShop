@@ -3,5 +3,6 @@
 Homestead.yaml
 Homestead.json
 .env
-/public/filemanager/userfiles/itemImage/
-/public/filemanager/userfiles/_thumbs/itemImage/
+/public/filemanager/userfiles/
+!/public/filemanager/userfiles/web.config
+!/public/filemanager/userfiles/.htaccess
