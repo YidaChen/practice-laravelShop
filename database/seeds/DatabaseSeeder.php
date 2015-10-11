@@ -1,7 +1,6 @@
 <?php
 
 use App\Role;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
@@ -28,11 +27,11 @@ class DatabaseSeeder extends Seeder {
 			'title' => '用戶',
 			'slug' => 'user',
 		]);
-		User::create([
-			'name' => 'YidaChen',
-			'email' => 'admin@gmail.com',
-			'password' => bcrypt('admin'),
-			'role_id' => 1,
-		]);
+		/*User::create([
+	'name' => 'Admin',
+	'email' => 'admin@gmail.com',
+	'password' => bcrypt('admin'),
+	'role_id' => 1,
+	]);*/
 	}
 }
