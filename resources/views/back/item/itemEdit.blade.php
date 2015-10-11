@@ -5,8 +5,8 @@
 @section('link')
 <link href="/css/back/metisMenu.css" rel="stylesheet">
 <link href="/css/back/sb-admin-2.css" rel="stylesheet">
-<link href="/css/back/font-awesome.min.css" rel="stylesheet">
-<link href="/select2-4.0.0/select2.min.css" rel="stylesheet">
+<link href="/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/select2-4.0.0/css/select2.min.css" rel="stylesheet">
 @endsection
 
 @section('body')
@@ -83,7 +83,7 @@
 <script src="/js/back/sb-admin-2.js"></script>
 <script src="/tinymce/tinymce.min.js"></script>
 <script src="/tinymce/tinymce_editor.js"></script>
-<script src="/select2-4.0.0/select2.min.js"></script>
+<script src="/select2-4.0.0/js/select2.min.js"></script>
 <script type="text/javascript">
     editor_config.selector = "textarea";
     editor_config.path_absolute = "/";

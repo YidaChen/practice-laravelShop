@@ -8,8 +8,8 @@
 @section('link')
 <link href="/css/back/metisMenu.css" rel="stylesheet">
 <link href="/css/back/sb-admin-2.css" rel="stylesheet">
-<link href="/css/back/font-awesome.min.css" rel="stylesheet">
-<link href="/css/back/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/DataTables/dataTables.min.css" rel="stylesheet">
 @endsection
 
 @section('body')
@@ -76,7 +76,7 @@
 @section('script')
 <script src="/js/back/metisMenu.js"></script>
 <script src="/js/back/sb-admin-2.js"></script>
-<script src="/js/back/jquery.dataTables.min.js"></script>
+<script src="/DataTables/dataTables.min.js"></script>
 <script>
 $(function(){
     $('#datatable').DataTable({

@@ -5,7 +5,7 @@
 @section('link')
 <link href="/css/back/metisMenu.css" rel="stylesheet">
 <link href="/css/back/sb-admin-2.css" rel="stylesheet">
-<link href="/css/back/font-awesome.min.css" rel="stylesheet">
+<link href="/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
 @endsection
 
 @section('body')
