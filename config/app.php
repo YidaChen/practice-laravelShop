@@ -149,6 +149,7 @@ return [
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		Intervention\Image\ImageServiceProvider::class,
 		Pqb\FilemanagerLaravel\FilemanagerLaravelServiceProvider::class,
+		Laravel\Socialite\SocialiteServiceProvider::class,
 
 	],
 
@@ -203,6 +204,7 @@ return [
 		'Debugbar' => Barryvdh\Debugbar\Facade::class,
 		'Image' => Intervention\Image\Facades\Image::class,
 		'FilemanagerLaravel' => Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel::class,
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 	],
 

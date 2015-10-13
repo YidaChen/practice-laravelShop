@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\AuthenticateUser;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 use Validator;
 
 class AuthController extends Controller {
@@ -60,5 +62,12 @@ class AuthController extends Controller {
 			'password' => bcrypt($data['password']),
 			'role_id' => 3,
 		]);
+	}
+	public function login(AuthenticateUser $authenticateUser, Request $request, $provider = null) {
+		return $authenticateUser->execute($request->all(), $this, $provider);
+	}
+	public function userHasLoggedIn($user) {
+		//Session::flash('message', 'Welcome, ' . $user->username);
+		return redirect('/');
 	}
 }

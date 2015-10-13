@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -14,7 +13,6 @@ class AddPriceToItemsTable extends Migration {
 			$table->integer('price')->unsigned();
 		});
 	}
-
 	/**
 	 * Reverse the migrations.
 	 *

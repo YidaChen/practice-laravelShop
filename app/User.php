@@ -27,7 +27,7 @@ CanResetPasswordContract {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password', 'role_id'];
+	protected $fillable = ['name', 'email', 'password', 'role_id', 'provider_id', 'username', 'avatar', 'provider'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.

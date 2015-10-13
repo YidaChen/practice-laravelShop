@@ -3,6 +3,8 @@
 @section('title','登入')
 
 @section('link')
+<link href="/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/bootstrap-3.3.5/css/bootstrap-social.css" rel="stylesheet">
 <style type="text/css">
     .login-panel {
         margin-top: 35px;
@@ -36,6 +38,8 @@
                                 <a href="{{ url('/auth/register') }}" class="pull-right">尚未註冊?</a>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                <a href="/login/facebook" class="btn btn-block btn-social btn-facebook">
+                                <i class="fa fa-facebook"></i>使用Facebook登入</a>
                             </fieldset>
                         </form>
                         @include('errors.formError')
