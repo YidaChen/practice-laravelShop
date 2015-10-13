@@ -51,7 +51,7 @@
                                             <td>@if(isset($review->user->name)){{ $review->user->name }}@else用戶已刪除@endif</td>
                                             <td>{{ $review->created_at->format('Y-m-d H:i') }}</td>
                                             <td>{!! Form::checkbox('seen',$review->id,$review->seen) !!}</td>
-                                            <td> <form action="{{ URL('back/review/'.$review->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除商品嗎? 操作無法復原!');">
+                                            <td> <form action="{{ URL('back/review/'.$review->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除評論嗎? 操作無法復原!');">
               <input name="_method" type="hidden" value="DELETE">
               <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-sm btn-danger">刪除評論</button></form></td>
                                         </tr>
