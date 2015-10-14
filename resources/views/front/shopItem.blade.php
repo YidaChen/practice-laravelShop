@@ -13,23 +13,7 @@ Yida商城-{{ $item->title }}
 
 @section('body')
 @include('front.partial.analyticstracking')
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '518358861678834',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_TW/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+@include('front.partial.fbLike')
 @include('front.partial.nav')
     <!-- Page Content -->
     <div class="container">
@@ -56,7 +40,7 @@ Yida商城-{{ $item->title }}
                         {!! $item->content !!}
                     </div>
                     <div class="text-right">
-
+                    <h3>$ {{ $item->price }}</h3>
                     <label>數量: </label>
                         <select name="quantity">
                         @for ($i = 1; $i <= $item->quantity; $i++)
@@ -64,7 +48,7 @@ Yida商城-{{ $item->title }}
                         @endfor
                         </select>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> 加入購物車</button>
+                        <button class="btn btn-danger addToCart"><span class="glyphicon glyphicon-shopping-cart"></span> 加入購物車</button>
                     </div>
                     <div class="ratings">
                         <p class="pull-right">3 reviews</p>
@@ -125,7 +109,7 @@ Yida商城-{{ $item->title }}
     </div>
     <!-- /.container -->
 @include('front.partial.footer')
-
+@include('front.partial.cart')
 @endsection
 
 @section('script')
@@ -136,6 +120,27 @@ $(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $("button.addToCart").click(function(){
+        var quantity = $('select[name=quantity]').val();
+        if(quantity){
+        $.ajax({
+            url: '/cart/addItem',
+            type: 'POST',
+            data: "quantity=" + quantity + "&item_id={{ $item->id }}" + "&price={{ $item->price }}"
+        })
+        .done(function(data) {
+            if(data){
+                $('#cart').css("display", "block");
+            }
+        })
+        .fail(function() {
+            alert('加入購物車失敗');
+        });
+        } else {
+            alert("很抱歉，商品暫時缺貨");
+        }
+    });
+
     $("button.review").click(function(){
         var input = $('input[name=content]').val();
         if(input){
@@ -148,9 +153,6 @@ $(function(){
         .done(function(data) {
             $('input[name=content]').val('');
             $('div.review:last-child').after('<hr><div class="row review"><div class="col-md-12">'+data.user+'&nbsp;&nbsp;<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="pull-right">'+data.time+'</span><p>'+data.content+'</p></div></div>');
-
-
-
         })
         .fail(function() {
             alert('發布評論失敗');

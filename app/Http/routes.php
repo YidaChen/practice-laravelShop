@@ -17,6 +17,7 @@ Route::group(['namespace' => 'front'], function () {
 	Route::get('search', 'ShopController@search');
 	Route::get('/{category?}', 'ShopController@index');
 	Route::post('storeReview', 'reviewController@store');
+	Route::post('cart/addItem', 'cartController@store');
 });
 
 // 認證路由

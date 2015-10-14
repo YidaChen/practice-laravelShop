@@ -82,7 +82,7 @@
     </div>
     <!-- /.container -->
 @include('front.partial.footer')
-
+@include('front.partial.cart')
 @endsection
 
 @section('script')
