@@ -55,6 +55,17 @@ Yida商城-{{ $item->title }}
                         </h4>
                         {!! $item->content !!}
                     </div>
+                    <div class="text-right">
+
+                    <label>數量: </label>
+                        <select name="quantity">
+                        @for ($i = 1; $i <= $item->quantity; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                        </select>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> 加入購物車</button>
+                    </div>
                     <div class="ratings">
                         <p class="pull-right">3 reviews</p>
                         <p>

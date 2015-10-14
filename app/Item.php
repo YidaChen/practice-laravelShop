@@ -11,6 +11,7 @@ class Item extends Model {
 		'content',
 		'price',
 		'published',
+		'quantity',
 	];
 	public function reviews() {
 		return $this->hasMany('App\Review');

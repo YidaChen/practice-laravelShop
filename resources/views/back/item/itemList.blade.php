@@ -38,6 +38,7 @@
                                             <th>發佈作者</th>
                                             <th>價錢</th>
                                             <th>發布</th>
+                                            <th>數量</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -49,6 +50,7 @@
                                             <td>@if(isset($item->user->name)){{ $item->user->name }}@else用戶已刪除@endif</td>
                                             <td>{{ $item->price }}</td>
                                             <td>{!! Form::checkbox('published',$item->id,$item->published) !!}</td>
+                                            <td>{{ $item->quantity }}</td>
                                             <td><a href="/back/item/{{$item->id}}/edit" type="button" class="btn btn-sm btn-info">修改資料</a> <form action="{{ URL('back/item/'.$item->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('確定要刪除商品嗎? 操作無法復原!');">
               <input name="_method" type="hidden" value="DELETE">
               <input type="hidden" name="_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-sm btn-danger">刪除商品</button></form></td>

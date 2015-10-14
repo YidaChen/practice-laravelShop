@@ -64,6 +64,10 @@
                                             <label>是否發布</label>
                                             <input type="checkbox" name="published" value="1" class="form-control">
                                         </div>
+                                        <div class="form-group">
+                                            <label>數量</label>
+                                            <input type="number" name="quantity" value="{{ old('quantity') }}" required class="form-control">
+                                        </div>
                                     <button type="submit" class="btn btn-primary btn-lg btn-block">確認創建</button>
                                     {!! Form::close() !!}
                                 </div>

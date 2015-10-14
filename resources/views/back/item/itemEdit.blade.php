@@ -59,6 +59,10 @@
                                             <label>是否發布</label>
                                             {!! Form::checkbox('published','1',$item->published,['class'=>'form-control']) !!}
                                         </div>
+                                        <div class="form-group">
+                                            <label>數量</label>
+                                            {!! Form::number('quantity',null,['class'=>'form-control','required'=>'required']) !!}
+                                        </div>
                                     {!! Form::submit('確認修改',['class'=>'btn btn-primary btn-lg btn-block']) !!}
                                     {!! Form::close() !!}
                                 </div>
