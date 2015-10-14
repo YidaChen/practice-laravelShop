@@ -12,6 +12,7 @@ Yida商城-{{ $item->title }}
 @endsection
 
 @section('body')
+@include('front.partial.analyticstracking')
 <script>
   window.fbAsyncInit = function() {
     FB.init({

@@ -7,7 +7,7 @@
 @endsection
 
 @section('body')
-
+@include('front.partial.analyticstracking')
 @include('front.partial.nav')
     <!-- Page Content -->
     <div class="container">
