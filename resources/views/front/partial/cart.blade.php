@@ -9,5 +9,5 @@
     }
 </style>
 <div id="cart">
-    <button class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span>結帳</button>
+    <a href="/cart/show" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-shopping-cart"></span>結帳</a>
 </div>

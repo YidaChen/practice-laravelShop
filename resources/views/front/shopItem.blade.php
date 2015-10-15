@@ -78,7 +78,7 @@ Yida商城-{{ $item->title }}
                     <div>
                     <label>{{ Auth::user()->name }} :</label>
                     <input name="content" type="text" class="form-control" placeholder="ajax評論">
-                        <button class="review btn btn-success btn-block">留下評論</button>
+                        <button class="review btn btn-info btn-block">留下評論</button>
                     </div>
                     @endif
 

@@ -18,7 +18,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">請先登入</h3>
                     </div>
                     <div class="panel-body">
                         <form method="POST" action="/auth/login" role="form">

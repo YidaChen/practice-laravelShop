@@ -7,13 +7,19 @@ use Illuminate\Http\Request;
 use Session;
 
 class cartController extends Controller {
+	public function __construct() {
+		$this->middleware('auth', ['except' => ['store']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//
+		if (Session::has('cart')) {
+			$carts = Session::get('cart');
+			return view('front.cartList', compact('carts'));
+		}
 	}
 
 	/**
@@ -34,7 +40,12 @@ class cartController extends Controller {
 	public function store(Request $request) {
 		if ($request->ajax()) {
 			$data = ['item_id' => $request->item_id, 'quantity' => $request->quantity, 'price' => $request->price];
-			Session::push('cart', $data);
+			if (Session::has('cart.' . $request->item_id)) {
+				Session::forget('cart.' . $request->item_id);
+				Session::push('cart.' . $request->item_id, $data);
+			} else {
+				Session::push('cart.' . $request->item_id, $data);
+			}
 			if (Session::has('cart')) {
 				return response()->json($data);
 			}
@@ -78,7 +89,13 @@ class cartController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
-		//
+	public function removeItem(Request $request) {
+		if ($request->ajax()) {
+			Session::forget('cart.' . $request->item_id);
+			if (empty(Session::get('cart'))) {
+				Session::forget('cart');
+				return response()->json('購物車已清空');
+			}
+		}
 	}
 }

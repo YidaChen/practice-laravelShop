@@ -18,6 +18,8 @@ Route::group(['namespace' => 'front'], function () {
 	Route::get('/{category?}', 'ShopController@index');
 	Route::post('storeReview', 'reviewController@store');
 	Route::post('cart/addItem', 'cartController@store');
+	Route::get('cart/show', 'cartController@index');
+	Route::post('cart/removeItem', 'cartController@removeItem');
 });
 
 // 認證路由
