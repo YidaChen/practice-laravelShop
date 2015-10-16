@@ -10,6 +10,7 @@
 
 @section('body')
 @include('front.partial.nav')
+@include('flash')
     <!-- Page Content -->
     <div class="container">
 
@@ -46,16 +47,59 @@
                         <td><strong>$ <span id="totalPrice"></span></strong></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td><a href="/" type="button" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> 繼續購物</a></td>
-                        <td><a type="button" class="btn btn-success">結帳 <span class="glyphicon glyphicon-play"></a></td>
+                        <td></td>
+                        <td>付款方式:</td>
+                        <td><a type="button" id="pod" class="btn btn-success">貨到付款 <span class="glyphicon glyphicon-triangle-bottom"></a></td>
                     </tr>
                     </tbody>
                   </table>
                 </div>
             </div>
         </div>
+        <div id="form" class="row" style="display:none">
+                <div class="col-lg-12">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <strong>收件人資料:</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="/order/checkout" method="POST" role="form">
+                                    {!! csrf_field() !!}
+                                    <input type="hidden" name="pay_id" value="1">
+                                    <input type="hidden" name="total_price" value="">
+                                        <div class="form-group">
+                                            <label>姓名</label>
+                                            <input type="text" name="addressee" value="{{ old('addressee') }}" required class="form-control">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>手機</label>
+                                            <input type="text" name="phone" value="{{ old('phone') }}" required class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>市話</label>
+                                            <input type="text" name="local_calls" value="{{ old('local_calls') }}" class="form-control" placeholder="選填">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>郵遞區號 <a href="http://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">請參考</a></label>
+                                            <input type="text" name="postal_code" required value="{{ old('postal_code') }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>地址</label>
+                                            <input type="text" name="address" required value="{{ old('address') }}" class="form-control">
+                                        </div>
+
+                                    <button type="submit" class="btn btn-warning btn-lg btn-block">確定送出</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     </div>
     <!-- /.container -->
@@ -74,7 +118,8 @@ $(function(){
     $('.price').each(function() {
         sum += Number($(this).text());
     });
-    $('#totalPrice').text(sum);
+    var totalPrice = $('#totalPrice').text(sum);
+    $('input[name="total_price"]').val(totalPrice.text());
 
     $("a.removeItem").click(function(){
         var itemId = $(this).attr("itemId");
@@ -94,11 +139,15 @@ $(function(){
             $('.price').each(function() {
                 sum += Number($(this).text());
             });
-            $('#totalPrice').text(sum);
+            var totalPrice = $('#totalPrice').text(sum);
+            $('input[name="total_price"]').val(totalPrice.text());
         })
         .fail(function() {
             alert('操作失敗');
         });
+    });
+    $('#pod').click(function(){
+        $('#form').toggle(800);
     });
 });
 </script>

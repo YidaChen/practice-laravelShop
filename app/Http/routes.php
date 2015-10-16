@@ -20,6 +20,7 @@ Route::group(['namespace' => 'front'], function () {
 	Route::post('cart/addItem', 'cartController@store');
 	Route::get('cart/show', 'cartController@index');
 	Route::post('cart/removeItem', 'cartController@removeItem');
+	Route::post('order/checkout', 'orderController@store');
 });
 
 // 認證路由

@@ -27,4 +27,7 @@ class Item extends Model {
 		return $this->categories->lists('id')->all();
 		// tags means tags() many-to-many relationship with tag
 	}
+	public function orderDetails() {
+		return $this->hasMany('App\OrderDetail');
+	}
 }

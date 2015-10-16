@@ -36,7 +36,9 @@
                             <div class="carousel-inner">
                             @foreach($take3Items as $item)
                                 <div class="item">
-                                    <a href="/item={{ $item->id }}"><img class="slide-image" src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" alt=""></a>
+                                    <a href="/item={{ $item->id }}"><img class="slide-image" src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" alt="">
+                                    <h2 class="carousel-caption" style="bottom: -35px">{{ $item->title }}</h2>
+                                    </a>
                                 </div>
                             @endforeach
                             </div>
