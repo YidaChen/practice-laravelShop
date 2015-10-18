@@ -1,5 +1,6 @@
 <?php
 
+use App\OrderStatus;
 use App\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -27,11 +28,19 @@ class DatabaseSeeder extends Seeder {
 			'title' => '用戶',
 			'slug' => 'user',
 		]);
-		/*User::create([
-	'name' => 'Admin',
-	'email' => 'admin@gmail.com',
-	'password' => bcrypt('admin'),
-	'role_id' => 1,
-	]);*/
+
+		OrderStatus::create([
+			'status' => '訂單已取消',
+		]);
+		OrderStatus::create([
+			'status' => '訂單確認中',
+		]);
+		OrderStatus::create([
+			'status' => '訂單已成立',
+		]);
+		OrderStatus::create([
+			'status' => '商品已出貨',
+		]);
+
 	}
 }

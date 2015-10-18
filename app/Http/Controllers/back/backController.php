@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\Review;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class backController extends Controller {
 	 */
 	public function index() {
 		$newReviewsNum = Review::where('seen', 0)->count();
-		return view('back.backIndex', compact('newReviewsNum'));
+		$newOrdersNum = Order::where('order_status_id', 2)->count();
+		return view('back.backIndex', compact('newReviewsNum', 'newOrdersNum'));
 	}
 
 	/**

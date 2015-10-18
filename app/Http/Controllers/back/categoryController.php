@@ -7,13 +7,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class categoryController extends Controller {
+	public function __construct() {
+		$this->middleware('IsAdmin', ['only' => ['destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$categories = Category::all();
+		$categories = Category::orderby('id', 'desc')->get();
 		return view('back.category.categoryList', compact('categories'));
 	}
 

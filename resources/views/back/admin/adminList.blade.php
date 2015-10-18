@@ -71,7 +71,8 @@
 <script>
 $(function(){
     $('#datatable').DataTable({
-        responsive: true
+        responsive: true,
+        "aaSorting": []
     });
 });
 </script>

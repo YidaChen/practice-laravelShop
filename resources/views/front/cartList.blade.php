@@ -9,6 +9,7 @@
 @endsection
 
 @section('body')
+@include('front.partial.analyticstracking')
 @include('front.partial.nav')
 @include('flash')
     <!-- Page Content -->
@@ -57,6 +58,7 @@
                 </div>
             </div>
         </div>
+        @include('errors.formError')
         <div id="form" class="row" style="display:none">
                 <div class="col-lg-12">
                     <div class="panel panel-warning">
@@ -69,6 +71,7 @@
                                     <form action="/order/checkout" method="POST" role="form">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="pay_id" value="1">
+                                    <input type="hidden" name="order_status_id" value="2">
                                     <input type="hidden" name="total_price" value="">
                                         <div class="form-group">
                                             <label>姓名</label>

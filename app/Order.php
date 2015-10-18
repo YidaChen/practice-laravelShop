@@ -14,11 +14,15 @@ class Order extends Model {
 		'postal_code',
 		'address',
 		'pay_id',
+		'order_status_id',
 	];
 	public function user() {
 		return $this->belongsTo('App\User');
 	}
 	public function details() {
 		return $this->hasMany('App\OrderDetail');
+	}
+	public function orderStatus() {
+		return $this->belongsTo('App\OrderStatus');
 	}
 }

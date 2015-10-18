@@ -1,24 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\front;
+namespace App\Http\Controllers\front\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderRequest;
-use App\item;
 use App\Order;
-use App\OrderDetail;
 use Auth;
 use Illuminate\Http\Request;
-use Session;
 
-class orderController extends Controller {
+class UserController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//
+		$user = Auth::user();
+		return view('front.user.userIndex', compact('user'));
+	}
+	public function orderList() {
+		$user_id = Auth::user()->id;
+		$orders = Order::where('user_id', '=', $user_id)->latest('created_at')->get();
+		return view('front.user.orderList', compact('orders'));
 	}
 
 	/**
@@ -36,32 +38,8 @@ class orderController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(OrderRequest $request) {
-		$carts = Session::get('cart');
-		$message = '';
-		foreach ($carts as $cart) {
-			$item = Item::find($cart[0]["item_id"]);
-			if ((int) $cart[0]["quantity"] > $item->quantity) {
-				$message .= $item->title . ' ,';
-			}
-		}
-		if ($message != '') {
-			Session::flash('flash_message', '很抱歉，商品: ' . $message . '庫存不足，請返回該商品頁查看庫存');
-			Session::flash('flash_message_important', true);
-			return redirect()->back()->withInput();
-		}
-		$order = $request->all();
-		$order['user_id'] = Auth::user()->id;
-		$order_id = Order::create($order)->id;
-		foreach ($carts as $cart) {
-			$cart[0]['order_id'] = $order_id;
-			OrderDetail::create($cart[0]);
-			$item = Item::find($cart[0]["item_id"]);
-			$item->quantity -= $cart[0]['quantity'];
-			$item->save();
-		}
-		Session::forget('cart');
-		return redirect('order/complete');
+	public function store(Request $request) {
+		//
 	}
 
 	/**
@@ -103,8 +81,5 @@ class orderController extends Controller {
 	 */
 	public function destroy($id) {
 		//
-	}
-	public function complete() {
-		return view('front.orderComplete');
 	}
 }

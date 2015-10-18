@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ItemRequest extends Request {
+class ItemAddRequest extends Request {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -25,7 +25,7 @@ class ItemRequest extends Request {
 			'summary' => 'required',
 			'content' => 'required',
 			'price' => 'required',
-			'image' => 'mimes:png,jpeg,bmp,gif,jpg',
+			'image' => 'required|mimes:png,jpeg,bmp,gif,jpg',
 			'quantity' => 'required',
 		];
 	}

@@ -5,14 +5,11 @@
 @section('link')
 <link href="/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="/bootstrap-3.3.5/css/bootstrap-social.css" rel="stylesheet">
-<style type="text/css">
-    .login-panel {
-        margin-top: 35px;
-    }
-</style>
 @endsection
 
 @section('body')
+@include('front.partial.analyticstracking')
+@include('front.partial.nav')
 <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -48,4 +45,5 @@
             </div>
         </div>
     </div>
+@include('front.partial.footer')
 @endsection

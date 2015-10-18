@@ -17,7 +17,7 @@ class adminController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$users = User::all();
+		$users = User::orderby('id', 'desc')->get();
 		return view('back.admin.adminList', compact('users'));
 	}
 	/**

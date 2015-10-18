@@ -13,7 +13,7 @@ class reviewController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$reviews = Review::all();
+		$reviews = Review::orderby('id', 'desc')->get();
 		return view('back.review.reviewList', compact('reviews'));
 	}
 

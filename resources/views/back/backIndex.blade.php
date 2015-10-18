@@ -12,6 +12,7 @@
 <div id="wrapper">
 @include('back.partial.nav')
 <div id="page-wrapper">
+@include('flash')
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Dashboard</h1>
@@ -73,12 +74,14 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
+                                @if($newOrdersNum > 0)
+                                    <div class="huge">{{ $newOrdersNum }}</div>
+                                    <div>接獲新訂單!</div>
+                                @endif
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="/back/order">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

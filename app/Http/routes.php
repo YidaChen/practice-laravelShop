@@ -8,8 +8,11 @@ Route::group(['middleware' => ['auth', 'NotUser'], 'prefix' => 'back', 'namespac
 	Route::put('item/updatePublished/{id}', 'itemController@updatePublished');
 	Route::resource('review', 'reviewController');
 	Route::put('review/updateSeen/{id}', 'reviewController@updateSeen');
+	Route::get('order', 'orderController@index');
+	Route::post('order/{id}', 'orderController@show');
+	Route::put('order/updateStatus/{id}', 'orderController@updateStatus');
 });
-Route::group(['middleware' => ['auth', 'NotUser']], function () {
+Route::group(['middleware' => ['auth', 'NotUser', 'IsAdmin']], function () {
 	Route::controller('filemanager', 'FilemanagerLaravelController');
 });
 Route::group(['namespace' => 'front'], function () {
@@ -21,6 +24,9 @@ Route::group(['namespace' => 'front'], function () {
 	Route::get('cart/show', 'cartController@index');
 	Route::post('cart/removeItem', 'cartController@removeItem');
 	Route::post('order/checkout', 'orderController@store');
+	Route::get('order/complete', 'orderController@complete');
+	Route::get('user/index', 'User\UserController@index');
+	Route::get('user/order', 'User\UserController@orderList');
 });
 
 // 認證路由

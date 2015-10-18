@@ -4,7 +4,8 @@ namespace App\Http\Controllers\back;
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ItemRequest;
+use App\Http\Requests\ItemAddRequest;
+use App\Http\Requests\ItemEditRequest;
 use App\Item;
 use Auth;
 use File;
@@ -12,13 +13,16 @@ use Illuminate\Http\Request;
 use Image;
 
 class itemController extends Controller {
+	public function __construct() {
+		$this->middleware('IsAdmin', ['only' => ['destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$items = Item::all();
+		$items = Item::orderby('id', 'desc')->get();
 		return view('back.item.itemList', compact('items'));
 	}
 
@@ -38,7 +42,7 @@ class itemController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(ItemRequest $request) {
+	public function store(ItemAddRequest $request) {
 		$item = Auth::user()->items()->create($request->all());
 		$item->categories()->attach($request->input('category_list'));
 
@@ -78,7 +82,7 @@ class itemController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(ItemRequest $request, $id) {
+	public function update(ItemEditRequest $request, $id) {
 		$item = Item::find($id);
 		$item->update($request->all());
 		if (empty($request->input('published'))) {

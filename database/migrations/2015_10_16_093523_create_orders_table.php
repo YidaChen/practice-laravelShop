@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration {
 			$table->smallInteger('postal_code')->unsigned();
 			$table->text('address');
 			$table->tinyInteger('pay_id')->unsigned();
+			$table->tinyInteger('order_status_id')->unsigned();
 			$table->timestamps();
 		});
 	}
