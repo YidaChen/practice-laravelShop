@@ -4,7 +4,7 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
-use App\item;
+use App\Item;
 use App\Order;
 use App\OrderDetail;
 use Auth;
