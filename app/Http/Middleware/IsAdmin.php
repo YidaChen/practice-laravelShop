@@ -7,7 +7,7 @@ use Session;
 
 class IsAdmin {
 	/**
-	 * Handle an incoming request.
+	 * 檢查用戶的權限是否為管理員
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \Closure  $next

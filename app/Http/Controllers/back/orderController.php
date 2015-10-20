@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class orderController extends Controller {
 	/**
-	 * Display a listing of the resource.
+	 * 顯示訂單列表
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -18,25 +18,12 @@ class orderController extends Controller {
 		$orderStatuses = OrderStatus::all();
 		return view('back.order.orderList', compact('orders', 'orderStatuses'));
 	}
-
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
+	 * 更新訂單狀態
+	 * @param  [type]  $id      [description]
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
 	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request) {
-		//
-	}
 	public function updateStatus($id, Request $request) {
 		$order = Order::find($id);
 		$order->order_status_id = $request->input('order_status_id');
@@ -44,7 +31,7 @@ class orderController extends Controller {
 		return response()->json($order->orderStatus->status);
 	}
 	/**
-	 * Display the specified resource.
+	 * 顯示商品詳情頁
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -58,36 +45,5 @@ class orderController extends Controller {
 		}
 		$order['detail'] = $data;
 		return response()->json($order);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id) {
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id) {
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id) {
-		//
 	}
 }

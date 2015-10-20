@@ -16,57 +16,6 @@ class reviewController extends Controller {
 		$reviews = Review::orderby('id', 'desc')->get();
 		return view('back.review.reviewList', compact('reviews'));
 	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request) {
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id) {
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id) {
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id) {
-		//
-	}
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -78,6 +27,12 @@ class reviewController extends Controller {
 		$review->delete();
 		return redirect('/back/review');
 	}
+	/**
+	 * 更新已讀評論
+	 * @param  Request $request [description]
+	 * @param  [type]  $id      [description]
+	 * @return [type]           [description]
+	 */
 	public function updateSeen(Request $request, $id) {
 		$review = Review::find($id);
 		$review->seen = $request->input('seen') == 'true' ? 1 : 0;

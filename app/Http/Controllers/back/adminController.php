@@ -8,11 +8,12 @@ use App\User;
 use Illuminate\Http\Request;
 
 class adminController extends Controller {
+	//檢查是否為管理員的middleware,除了管理員顯示
 	public function __construct() {
 		$this->middleware('IsAdmin', ['except' => ['index']]);
 	}
 	/**
-	 * Display a listing of the resource.
+	 * 顯示管理員列表
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -21,7 +22,7 @@ class adminController extends Controller {
 		return view('back.admin.adminList', compact('users'));
 	}
 	/**
-	 * Show the form for creating a new resource.
+	 * 顯示創建用戶頁面
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -31,7 +32,7 @@ class adminController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * 儲存創建用戶的表單
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -43,7 +44,7 @@ class adminController extends Controller {
 		return redirect('back/admin');
 	}
 	/**
-	 * Show the form for editing the specified resource.
+	 * 顯示編輯用戶表單
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -55,7 +56,7 @@ class adminController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * 更新用戶
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -70,7 +71,7 @@ class adminController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * 移除使用者
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response

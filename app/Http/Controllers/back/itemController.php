@@ -52,19 +52,8 @@ class itemController extends Controller {
 		}
 		return redirect('/back/item');
 	}
-
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id) {
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
+	 * 編輯商品表單
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -76,7 +65,7 @@ class itemController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * 更新商品
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -98,7 +87,7 @@ class itemController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * 移除商品
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -115,6 +104,12 @@ class itemController extends Controller {
 		}
 		return redirect('/back/item');
 	}
+	/**
+	 * 更新商品是否發布
+	 * @param  Request $request [description]
+	 * @param  [type]  $id      [description]
+	 * @return [type]           [description]
+	 */
 	public function updatePublished(Request $request, $id) {
 		$item = Item::find($id);
 		$item->published = $request->input('published') == 'true' ? 1 : 0;

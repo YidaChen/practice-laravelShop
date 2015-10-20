@@ -11,7 +11,7 @@ class categoryController extends Controller {
 		$this->middleware('IsAdmin', ['only' => ['destroy']]);
 	}
 	/**
-	 * Display a listing of the resource.
+	 * 顯示標籤列表
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -21,7 +21,7 @@ class categoryController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * 創建標籤表單
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -30,7 +30,7 @@ class categoryController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * 儲存標籤
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -44,7 +44,7 @@ class categoryController extends Controller {
 		return redirect('back/category');
 	}
 	/**
-	 * Show the form for editing the specified resource.
+	 * 編輯標籤表單
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -55,7 +55,7 @@ class categoryController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * 更新標籤
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -71,7 +71,7 @@ class categoryController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * 移除標籤
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller {
 	/**
-	 * Display a listing of the resource.
+	 * 顯示商品列表
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -25,6 +25,7 @@ class ShopController extends Controller {
 		}
 		return view('front.shopIndex', compact('items', 'categories', 'take3Items'));
 	}
+	//搜尋商品
 	public function search(Request $search) {
 		$search = $search->input('search');
 		$items = Item::where('title', 'LIKE', '%' . $search . '%')
@@ -33,7 +34,7 @@ class ShopController extends Controller {
 		return view('front.shopIndex', compact('items', 'categories'));
 	}
 	/**
-	 * Display the specified resource.
+	 * 顯示特定商品
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -44,36 +45,5 @@ class ShopController extends Controller {
 			$categories = Category::get();
 			return view('front.shopItem', compact('item', 'categories'));
 		}
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id) {
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id) {
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id) {
-		//
 	}
 }

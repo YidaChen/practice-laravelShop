@@ -159,7 +159,7 @@ $(function(){
             $('input[name="postal_code"]').val(order.postal_code);
             $('textarea[name="address"]').val(order.address);
             $('select[name="order_status_id"]').val(order.order_status_id);
-
+            //for循環出商品列表
             for (var i = 0; i < order.detail.item_title.length; i++) {
                 $("#item-list").append("<tr><td>"+ order.detail.item_title[i] +"</td><td>"+ order.detail.quantity[i] +"</td><td>$ "+ order.detail.price[i] +"</td></tr>");
             };

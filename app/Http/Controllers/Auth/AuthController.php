@@ -63,6 +63,8 @@ class AuthController extends Controller {
 			'role_id' => 3,
 		]);
 	}
+	//社群登入
+	//http://www.codeanchor.net/blog/complete-laravel-socialite-tutorial/
 	public function login(AuthenticateUser $authenticateUser, Request $request, $provider = null) {
 		return $authenticateUser->execute($request->all(), $this, $provider);
 	}
