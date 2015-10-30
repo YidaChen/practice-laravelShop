@@ -26,3 +26,6 @@
 footer {
     margin: 20px 0;
 }
+.fb-like ,.fb-like span,.fb-like span iframe{
+    width: 100% !important;
+}

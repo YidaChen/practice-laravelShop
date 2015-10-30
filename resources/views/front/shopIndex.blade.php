@@ -56,7 +56,7 @@
                     @foreach($items as $item)
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <a href="/item={{ $item->id }}"><img src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" style="width:320px;height:150px" alt=""></a>
+                            <a href="/item={{ $item->id }}"><img class="img-responsive" src="/filemanager/userfiles/itemImage/{{ $item->id.'.jpg' }}" style="width:100%;height:150px" alt=""></a>
                             <div class="caption">
                                 <h4 class="pull-right">$ {{ $item->price }}</h4>
                                 <h4><a href="/item={{ $item->id }}">{{ $item->title }}</a>
