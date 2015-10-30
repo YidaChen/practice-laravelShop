@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth', 'NotUser', 'IsAdmin']], function () {
 Route::group(['namespace' => 'front'], function () {
 	//商品頁
 	Route::get('/item={id}', 'ShopController@show');
+	//無限滾動
+	Route::get('/infiniteScroll', 'ShopController@infiniteScroll');
 	//前台首頁, url可傳入標籤搜尋
 	Route::get('/{category?}', 'ShopController@index');
 	//搜尋

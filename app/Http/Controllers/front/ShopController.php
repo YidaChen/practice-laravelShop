@@ -46,4 +46,8 @@ class ShopController extends Controller {
 			return view('front.shopItem', compact('item', 'categories'));
 		}
 	}
+	public function infiniteScroll() {
+		$items = Item::where('published', 1)->latest('created_at')->paginate(2);
+		return view('front.infiniteScroll', compact('items'));
+	}
 }

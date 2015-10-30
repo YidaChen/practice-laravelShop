@@ -9,6 +9,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">YiDa商城(demo)</a>
+                <a class="navbar-brand" href="/infiniteScroll">無限滾動</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,9 +20,6 @@
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
                     <li>
                         <a href="#">Contact</a>
                     </li>
