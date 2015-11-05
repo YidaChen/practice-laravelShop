@@ -3,21 +3,21 @@
 Route::group(['middleware' => ['auth', 'NotUser'], 'prefix' => 'back', 'namespace' => 'back'], function () {
 	//後臺主頁
 	Route::get('/', 'backController@index');
-	//管理員
+	//管理員 資源(增刪查改)
 	Route::resource('admin', 'adminController');
-	//標籤
+	//標籤 資源(增刪查改)
 	Route::resource('category', 'categoryController');
-	//商品
+	//商品 資源(增刪查改)
 	Route::resource('item', 'itemController');
 	//AJAX更新商品發布
 	Route::put('item/updatePublished/{id}', 'itemController@updatePublished');
-	//評論
+	//評論 資源(增刪查改)
 	Route::resource('review', 'reviewController');
 	//AJAX更新已讀評論
 	Route::put('review/updateSeen/{id}', 'reviewController@updateSeen');
-	//訂單
+	//訂單列表
 	Route::get('order', 'orderController@index');
-	//訂單商品列表
+	//訂單商品清單
 	Route::post('order/{id}', 'orderController@show');
 	//更新訂單狀態
 	Route::put('order/updateStatus/{id}', 'orderController@updateStatus');
@@ -28,19 +28,19 @@ Route::group(['middleware' => ['auth', 'NotUser', 'IsAdmin']], function () {
 });
 //前台路由
 Route::group(['namespace' => 'front'], function () {
-	//商品頁
+	//商品詳情頁
 	Route::get('/item={id}', 'ShopController@show');
 	//無限滾動
 	Route::get('/infiniteScroll', 'ShopController@infiniteScroll');
-	//前台首頁, url可傳入標籤搜尋
-	Route::get('/{category?}', 'ShopController@index');
-	//搜尋
+	//商品標題搜尋
 	Route::get('search', 'ShopController@search');
+	//首頁,顯示商品列表, url可傳入標籤搜尋
+	Route::get('/{category?}', 'ShopController@index');
 	//評論發布
 	Route::post('storeReview', 'reviewController@store');
 	//添加商品至購物車
 	Route::post('cart/addItem', 'cartController@store');
-	//購物車列表
+	//顯示購物車商品列表
 	Route::get('cart/show', 'cartController@index');
 	//移除購物車商品
 	Route::post('cart/removeItem', 'cartController@removeItem');
